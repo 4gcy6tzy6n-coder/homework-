@@ -11,6 +11,17 @@ import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+matplotlib.rcParams.update({
+    "figure.dpi": 150,
+    "font.size": 11,
+    "axes.titlesize": 13,
+    "axes.labelsize": 11,
+    "legend.fontsize": 9,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "lines.linewidth": 2,
+    "lines.markersize": 7,
+})
 from sklearn.metrics import (
     accuracy_score, confusion_matrix, classification_report,
     f1_score, precision_score, recall_score, log_loss,
@@ -126,7 +137,7 @@ def _plot_loss_curves(loss_curves):
             axes[1].set_title(f"{name} — Validation Accuracy")
             axes[1].grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.savefig(f"{RESULTS_DIR}/loss_curve_{name}.png", dpi=150)
+        plt.savefig(f"{RESULTS_DIR}/loss_curve_{name}.png", dpi=300)
         plt.close()
         print(f"  Saved loss_curve_{name}.png")
 
@@ -158,7 +169,7 @@ def _measure_speed(models, X_test, n_runs=20):
                  f"{v:.1f}", ha="center", fontsize=9)
     plt.xticks(rotation=15, ha="right")
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/inference_speed.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/inference_speed.png", dpi=300)
     plt.close()
     return results
 
@@ -186,7 +197,7 @@ def _plot_confusion_matrices(models, X_test, y_test, class_names):
 
     plt.colorbar(im, ax=axes.tolist(), shrink=0.8)
     fig.suptitle("Confusion Matrices", fontsize=13, y=1.02)
-    plt.savefig(f"{RESULTS_DIR}/confusion_matrices.png", dpi=150,
+    plt.savefig(f"{RESULTS_DIR}/confusion_matrices.png", dpi=300,
                 bbox_inches="tight")
     plt.close()
 
@@ -221,7 +232,7 @@ def _plot_f1_comparison(models, X_test, y_test, class_names):
         ax.grid(True, alpha=0.3, axis="y")
     plt.suptitle("Per-Class Metrics Comparison", fontsize=13)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/f1_precision_recall.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/f1_precision_recall.png", dpi=300)
     plt.close()
     print("  Saved f1_precision_recall.png")
 
@@ -256,7 +267,7 @@ def _evaluate_robustness(models, X_test, y_test):
     plt.legend(fontsize=9)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/robustness.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/robustness.png", dpi=300)
     plt.close()
     print("  Saved robustness.png")
     return results
@@ -299,7 +310,7 @@ def _analyze_overfitting(models, X_train, y_train, X_test, y_test):
     plt.title("Train vs Test Accuracy (Overfitting Check)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/overfitting.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/overfitting.png", dpi=300)
     plt.close()
     print("  Saved overfitting.png")
     return results
@@ -321,7 +332,7 @@ def _plot_feature_importance(models, feature_cols):
         plt.xlabel("Importance")
         plt.title(f"Feature Importance — {name}")
         plt.tight_layout()
-        plt.savefig(f"{RESULTS_DIR}/feature_importance_{name}.png", dpi=150)
+        plt.savefig(f"{RESULTS_DIR}/feature_importance_{name}.png", dpi=300)
         plt.close()
     print("  Saved feature importance plots")
 
@@ -344,7 +355,7 @@ def _plot_correlation_heatmap(X, feature_cols):
     plt.colorbar(im, shrink=0.8)
     plt.title("Feature Correlation Matrix (Pearson)", fontsize=13)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/correlation_heatmap.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/correlation_heatmap.png", dpi=300)
     plt.close()
     print("  Saved correlation_heatmap.png")
 
@@ -367,7 +378,7 @@ def _plot_pca(X, y, label_encoder):
     plt.legend(markerscale=3, fontsize=8)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/pca_projection.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/pca_projection.png", dpi=300)
     plt.close()
     print("  Saved pca_projection.png")
 
@@ -406,7 +417,7 @@ def _plot_learning_curves(models, X_train, y_train):
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.savefig(f"{RESULTS_DIR}/learning_curve_{name}.png", dpi=150)
+        plt.savefig(f"{RESULTS_DIR}/learning_curve_{name}.png", dpi=300)
         plt.close()
     print("  Saved learning curve plots")
 

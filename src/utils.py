@@ -7,6 +7,15 @@ import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+matplotlib.rcParams.update({
+    "figure.dpi": 150,
+    "font.size": 11,
+    "axes.titlesize": 13,
+    "axes.labelsize": 11,
+    "legend.fontsize": 9,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+})
 
 from .config import RESULTS_DIR
 
@@ -31,7 +40,7 @@ def plot_class_distribution(y, label_encoder, title="Class Distribution"):
         plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 10,
                  str(val), ha="center", fontsize=9)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/class_distribution.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/class_distribution.png", dpi=300)
     plt.close()
 
 
@@ -53,7 +62,7 @@ def plot_feature_boxplots(df: pd.DataFrame, feature_cols, title_prefix=""):
 
     fig.suptitle(f"{title_prefix}Feature Distributions (Boxplot)", fontsize=13)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/feature_boxplots.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/feature_boxplots.png", dpi=300)
     plt.close()
 
 
@@ -72,5 +81,5 @@ def plot_missing_values(df: pd.DataFrame):
     plt.title("Missing Values per Column")
     plt.xticks(rotation=30, ha="right", fontsize=9)
     plt.tight_layout()
-    plt.savefig(f"{RESULTS_DIR}/missing_values.png", dpi=150)
+    plt.savefig(f"{RESULTS_DIR}/missing_values.png", dpi=300)
     plt.close()
